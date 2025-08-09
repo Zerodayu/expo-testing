@@ -1,7 +1,6 @@
 import React from "react";
-import { StyleSheet, TextStyle, TouchableOpacity, TouchableOpacityProps } from "react-native";
+import { StyleSheet, Text, TextStyle, TouchableOpacity, TouchableOpacityProps } from "react-native";
 import { COLORS } from "../app/global-css";
-import Text from "./Text";
 
 type Variant =
   | "default"
@@ -85,7 +84,7 @@ const ButtonStyle = ({
       activeOpacity={0.8}
       {...rest}
     >
-      <Text variant={variant === "link" ? "link" : "default"} style={[textVariants[variant], textStyle]}>
+      <Text style={[textVariants[variant], textStyle]}>
         {children}
       </Text>
     </TouchableOpacity>

@@ -21,6 +21,8 @@ type Tracking =
   | "wider"
   | "widest";
 
+type Padding = number | string;
+
 const variantStyles = StyleSheet.create({
   default: {
     color: COLORS.foreground,
@@ -38,8 +40,7 @@ const variantStyles = StyleSheet.create({
     textDecorationLine: "underline",
   },
   muted: {
-    color: COLORS.foreground,
-    backgroundColor: COLORS.muted,
+    color: COLORS.muted,
   },
   highlight: {
     color: COLORS.foreground,
@@ -60,9 +61,18 @@ const trackingStyles: Record<Tracking, { letterSpacing: number }> = {
 
 interface Props extends TextProps {
   font?: Font;
-  variants?: Style[] | string; // accept array or string
+  variants?: Style[] | string;
   size?: number | string;
   tracking?: Tracking;
+  color?: string;
+  opacity?: number | string;
+  p?: Padding;   // padding (all sides)
+  px?: Padding;  // padding horizontal (left & right)
+  py?: Padding;  // padding vertical (top & bottom)
+  pt?: Padding;  // padding top
+  pb?: Padding;  // padding bottom
+  pl?: Padding;  // padding left
+  pr?: Padding;  // padding right
   children: React.ReactNode;
 }
 
@@ -71,14 +81,57 @@ const TextStyle = ({
   variants = [],
   size = 16,
   tracking = "normal",
+  color,
+  opacity,
+  p,
+  px,
+  py,
+  pt,
+  pb,
+  pl,
+  pr,
   children,
   ...rest
 }: Props) => {
-  // Convert string to array if needed
   const variantArr: Style[] =
     typeof variants === "string"
       ? variants.split(" ").filter(Boolean) as Style[]
       : variants;
+
+  // Build padding styles object with proper precedence
+  const paddingStyles: Record<string, number> = {};
+  
+  // Start with general padding (all sides)
+  if (p !== undefined) {
+    paddingStyles.paddingTop = Number(p);
+    paddingStyles.paddingBottom = Number(p);
+    paddingStyles.paddingLeft = Number(p);
+    paddingStyles.paddingRight = Number(p);
+  }
+  
+  // Then apply axis-specific padding (overrides p)
+  if (px !== undefined) {
+    paddingStyles.paddingLeft = Number(px);
+    paddingStyles.paddingRight = Number(px);
+  }
+  if (py !== undefined) {
+    paddingStyles.paddingTop = Number(py);
+    paddingStyles.paddingBottom = Number(py);
+  }
+  
+  // Finally apply side-specific padding (overrides px/py)
+  if (pt !== undefined) {
+    paddingStyles.paddingTop = Number(pt);
+  }
+  if (pb !== undefined) {
+    paddingStyles.paddingBottom = Number(pb);
+  }
+  if (pl !== undefined) {
+    paddingStyles.paddingLeft = Number(pl);
+  }
+  if (pr !== undefined) {
+    paddingStyles.paddingRight = Number(pr);
+  }
 
   return (
     <RNText
@@ -87,6 +140,9 @@ const TextStyle = ({
         variantStyles[font],
         ...variantArr.map(v => variantStyles[v]),
         trackingStyles[tracking],
+        color ? { color } : {},
+        opacity !== undefined ? { opacity: Number(opacity) } : {},
+        paddingStyles,
       ]}
       {...rest}
     >
