@@ -4,6 +4,10 @@ import { Text, View } from "react-native";
 export default function Profile() {
   return (
     <View style={{ flex: 1, backgroundColor: "#F6F6FF", alignItems: "center" }}>
+      <Text style={sText.title}>Tabs - Profile</Text>
+      <Text style={sText.body}>Tabs - Profile</Text>
+      <Text style={sText.muted}>Tabs - Profile</Text>
+      <Text style={sText.link}>Tabs - Profile</Text>
       <Text style={sText.code}>Tabs - Profile</Text>
     </View>
   );

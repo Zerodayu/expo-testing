@@ -10,16 +10,22 @@ export const sText = StyleSheet.create({
   
   body: {
     fontFamily: FONT.type.sans,
-    letterSpacing: FONT.tracking.normal,
   },
   
-  caption: {
+  muted: {
     fontFamily: FONT.type.sans,
+    color: COLORS.muted,
     letterSpacing: FONT.tracking.wide,
+  },
+
+  link: {
+    fontFamily: FONT.type.mono,
+    textDecorationLine: 'underline',
   },
   
   code: {
     fontFamily: FONT.type.mono,
+    color: COLORS.primary,
     fontWeight: 'bold',
   },
 });
