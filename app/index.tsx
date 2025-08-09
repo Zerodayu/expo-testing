@@ -1,25 +1,18 @@
-import ButtonStyle from "@/components/Buttons";
-import { View } from "react-native";
-import { COLORS } from "../app/global-css";
-import TextStyle from "../components/Text";
+import { Link } from "expo-router";
+import { Text, View } from "react-native";
+import { sButton, sText } from "./styleSheet";
 
 export default function Index() {
   return (
     <View style={{ flex: 1, backgroundColor: "#F6F6FF", alignItems: "center" }}>
-      <ButtonStyle 
-      bg={COLORS.primary} 
-      px={20} 
-      py={12} 
-      borderWidth={1} 
-      borderColor={COLORS.accent}
-      radius="md"
-      textColor="#FFF"
-      font="bold"
-      m={20}
-    >
-      Custom Button
-    </ButtonStyle>
-      <TextStyle variants="mono" font="bold" tracking="tighter" color="#aa0000" my={20}>Edit app/index.tsx</TextStyle>
+      <Link style={sButton.primary} href="../home">Go to Home</Link>
+      <Link style={sButton.secondary} href="../home">Go to Home</Link>
+      <Link style={sButton.outline} href="../home">Go to Home</Link>
+      <Link style={sButton.link} href="../home">Go to Home</Link>
+      <Link style={sButton.destructive} href="../home">Go to Home</Link>
+      <Link style={sButton.disabled} href="../home">Go to Home</Link>
+
+      <Text style={sText.code}>Hello World</Text>
     </View>
   );
 }
