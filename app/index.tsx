@@ -11,7 +11,7 @@ export default function Index() {
       <ButtonStyle variant="ghost">Ghost Button</ButtonStyle>
       <ButtonStyle variant="destructive">Destructive Button</ButtonStyle>
       <ButtonStyle variant="link">Link Button</ButtonStyle>
-      <TextStyle variants="mono highlight link" font="bold" size="14" tracking="tighter" color="#aa0000" p={10}>Edit app/index.tsx</TextStyle>
+      <TextStyle variants="mono highlight link" font="bold" size="14" tracking="tighter" color="#aa0000" p={10} my={20}>Edit app/index.tsx</TextStyle>
     </View>
   );
 }

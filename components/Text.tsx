@@ -22,6 +22,7 @@ type Tracking =
   | "widest";
 
 type Padding = number | string;
+type Margin = number | string;
 
 const variantStyles = StyleSheet.create({
   default: {
@@ -73,6 +74,13 @@ interface Props extends TextProps {
   pb?: Padding;  // padding bottom
   pl?: Padding;  // padding left
   pr?: Padding;  // padding right
+  m?: Margin;    // margin (all sides)
+  mx?: Margin;   // margin horizontal (left & right)
+  my?: Margin;   // margin vertical (top & bottom)
+  mt?: Margin;   // margin top
+  mb?: Margin;   // margin bottom
+  ml?: Margin;   // margin left
+  mr?: Margin;   // margin right
   children: React.ReactNode;
 }
 
@@ -90,6 +98,13 @@ const TextStyle = ({
   pb,
   pl,
   pr,
+  m,
+  mx,
+  my,
+  mt,
+  mb,
+  ml,
+  mr,
   children,
   ...rest
 }: Props) => {
@@ -133,6 +148,41 @@ const TextStyle = ({
     paddingStyles.paddingRight = Number(pr);
   }
 
+  // Build margin styles object with proper precedence
+  const marginStyles: Record<string, number> = {};
+  
+  // Start with general margin (all sides)
+  if (m !== undefined) {
+    marginStyles.marginTop = Number(m);
+    marginStyles.marginBottom = Number(m);
+    marginStyles.marginLeft = Number(m);
+    marginStyles.marginRight = Number(m);
+  }
+  
+  // Then apply axis-specific margin (overrides m)
+  if (mx !== undefined) {
+    marginStyles.marginLeft = Number(mx);
+    marginStyles.marginRight = Number(mx);
+  }
+  if (my !== undefined) {
+    marginStyles.marginTop = Number(my);
+    marginStyles.marginBottom = Number(my);
+  }
+  
+  // Finally apply side-specific margin (overrides mx/my)
+  if (mt !== undefined) {
+    marginStyles.marginTop = Number(mt);
+  }
+  if (mb !== undefined) {
+    marginStyles.marginBottom = Number(mb);
+  }
+  if (ml !== undefined) {
+    marginStyles.marginLeft = Number(ml);
+  }
+  if (mr !== undefined) {
+    marginStyles.marginRight = Number(mr);
+  }
+
   return (
     <RNText
       style={[
@@ -143,6 +193,7 @@ const TextStyle = ({
         color ? { color } : {},
         opacity !== undefined ? { opacity: Number(opacity) } : {},
         paddingStyles,
+        marginStyles,
       ]}
       {...rest}
     >
