@@ -47,7 +47,7 @@ const variantStyles = StyleSheet.create({
     color: COLORS.foreground,
     backgroundColor: COLORS.muted,
     paddingHorizontal: 4,
-    borderRadius: 4,
+    borderRadius: 5,
   },
 });
 
@@ -66,28 +66,28 @@ interface Props extends TextProps {
   size?: number | string;
   tracking?: Tracking;
   color?: string;
-  opacity?: number | string;
-  p?: Padding;   // padding (all sides)
-  px?: Padding;  // padding horizontal (left & right)
-  py?: Padding;  // padding vertical (top & bottom)
-  pt?: Padding;  // padding top
-  pb?: Padding;  // padding bottom
-  pl?: Padding;  // padding left
-  pr?: Padding;  // padding right
-  m?: Margin;    // margin (all sides)
-  mx?: Margin;   // margin horizontal (left & right)
-  my?: Margin;   // margin vertical (top & bottom)
-  mt?: Margin;   // margin top
-  mb?: Margin;   // margin bottom
-  ml?: Margin;   // margin left
-  mr?: Margin;   // margin right
+  opacity?: number;
+  p?: Padding;
+  px?: Padding;
+  py?: Padding;
+  pt?: Padding;
+  pb?: Padding;
+  pl?: Padding;
+  pr?: Padding;
+  m?: Margin;
+  mx?: Margin;
+  my?: Margin;
+  mt?: Margin;
+  mb?: Margin;
+  ml?: Margin;
+  mr?: Margin;
   children: React.ReactNode;
 }
 
 const TextStyle = ({
   font = "default",
   variants = [],
-  size = 16,
+  size,
   tracking = "normal",
   color,
   opacity,
@@ -113,10 +113,8 @@ const TextStyle = ({
       ? variants.split(" ").filter(Boolean) as Style[]
       : variants;
 
-  // Build padding styles object with proper precedence
   const paddingStyles: Record<string, number> = {};
   
-  // Start with general padding (all sides)
   if (p !== undefined) {
     paddingStyles.paddingTop = Number(p);
     paddingStyles.paddingBottom = Number(p);
@@ -124,7 +122,6 @@ const TextStyle = ({
     paddingStyles.paddingRight = Number(p);
   }
   
-  // Then apply axis-specific padding (overrides p)
   if (px !== undefined) {
     paddingStyles.paddingLeft = Number(px);
     paddingStyles.paddingRight = Number(px);
@@ -134,7 +131,6 @@ const TextStyle = ({
     paddingStyles.paddingBottom = Number(py);
   }
   
-  // Finally apply side-specific padding (overrides px/py)
   if (pt !== undefined) {
     paddingStyles.paddingTop = Number(pt);
   }
@@ -148,10 +144,8 @@ const TextStyle = ({
     paddingStyles.paddingRight = Number(pr);
   }
 
-  // Build margin styles object with proper precedence
   const marginStyles: Record<string, number> = {};
   
-  // Start with general margin (all sides)
   if (m !== undefined) {
     marginStyles.marginTop = Number(m);
     marginStyles.marginBottom = Number(m);
@@ -159,7 +153,6 @@ const TextStyle = ({
     marginStyles.marginRight = Number(m);
   }
   
-  // Then apply axis-specific margin (overrides m)
   if (mx !== undefined) {
     marginStyles.marginLeft = Number(mx);
     marginStyles.marginRight = Number(mx);
@@ -169,7 +162,6 @@ const TextStyle = ({
     marginStyles.marginBottom = Number(my);
   }
   
-  // Finally apply side-specific margin (overrides mx/my)
   if (mt !== undefined) {
     marginStyles.marginTop = Number(mt);
   }
@@ -191,7 +183,7 @@ const TextStyle = ({
         ...variantArr.map(v => variantStyles[v]),
         trackingStyles[tracking],
         color ? { color } : {},
-        opacity !== undefined ? { opacity: Number(opacity) } : {},
+        opacity !== undefined ? { opacity } : {},
         paddingStyles,
         marginStyles,
       ]}
