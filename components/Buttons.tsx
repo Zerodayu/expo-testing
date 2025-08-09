@@ -1,6 +1,6 @@
 import React from "react";
 import { Linking, TouchableOpacity, TouchableOpacityProps, ViewStyle } from "react-native";
-import { RADIUS } from "../app/global-css";
+import { RADIUS } from "../ui/global-css";
 import TextStyle from "./Text";
 
 type Radius =

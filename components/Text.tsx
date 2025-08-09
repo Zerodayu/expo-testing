@@ -1,6 +1,6 @@
 import React from "react";
 import { Text as RNText, StyleSheet, TextProps } from "react-native";
-import { COLORS, FONT } from "../app/global-css";
+import { COLORS, FONT } from "../ui/global-css";
 
 type Font =
   | "default"

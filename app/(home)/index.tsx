@@ -1,6 +1,6 @@
 import { Link } from "expo-router";
 import { Text, View } from "react-native";
-import { sButton, sText } from "./styleSheet";
+import { sButton, sText } from "../../ui/styleSheet";
 
 export default function Index() {
   return (
