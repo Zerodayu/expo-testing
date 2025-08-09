@@ -1,6 +1,6 @@
 import React from "react";
 import { Text as RNText, StyleSheet, TextProps } from "react-native";
-import { COLORS } from "../app/global-css";
+import { COLORS, TRACKING } from "../app/global-css";
 
 type Font =
   | "default"
@@ -52,12 +52,12 @@ const variantStyles = StyleSheet.create({
 });
 
 const trackingStyles: Record<Tracking, { letterSpacing: number }> = {
-  tighter: { letterSpacing: -0.5 },
-  tight: { letterSpacing: -0.25 },
-  normal: { letterSpacing: 0 },
-  wide: { letterSpacing: 0.5 },
-  wider: { letterSpacing: 1 },
-  widest: { letterSpacing: 2 },
+  tighter: { letterSpacing: TRACKING.tighter },
+  tight: { letterSpacing: TRACKING.tight },
+  normal: { letterSpacing: TRACKING.normal },
+  wide: { letterSpacing: TRACKING.wide },
+  wider: { letterSpacing: TRACKING.wider },
+  widest: { letterSpacing: TRACKING.widest },
 };
 
 interface Props extends TextProps {

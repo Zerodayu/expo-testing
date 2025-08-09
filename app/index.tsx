@@ -15,7 +15,7 @@ export default function Index() {
       radius="md"
       textColor="#FFF"
       font="bold"
-      variants="mono"
+      m={20}
     >
       Custom Button
     </ButtonStyle>

@@ -1,5 +1,5 @@
 import React from "react";
-import { TouchableOpacity, TouchableOpacityProps, ViewStyle } from "react-native";
+import { Linking, TouchableOpacity, TouchableOpacityProps, ViewStyle } from "react-native";
 import { RADIUS } from "../app/global-css";
 import TextStyle from "./Text";
 
@@ -14,9 +14,13 @@ type Radius =
 type Padding = number | string;
 type Margin = number | string;
 
-interface Props extends TouchableOpacityProps {
+interface Props extends Omit<TouchableOpacityProps, 'onPress'> {
   radius?: Radius;
   children: React.ReactNode;
+  
+  // Navigation/Action props
+  href?: string;
+  onClick?: () => void;
   
   // Text styling props from TextStyle component
   font?: "default" | "bold" | "italic";
@@ -57,6 +61,8 @@ const ButtonStyle = ({
   radius = "none",
   style,
   children,
+  href,
+  onClick,
   font,
   variants,
   textSize,
@@ -83,6 +89,14 @@ const ButtonStyle = ({
   mr,
   ...rest
 }: Props) => {
+  const handlePress = () => {
+    if (href) {
+      Linking.openURL(href);
+    } else if (onClick) {
+      onClick();
+    }
+  };
+
   const paddingStyles: Record<string, number> = {};
   
   if (p !== undefined) {
@@ -176,6 +190,7 @@ const ButtonStyle = ({
         style
       ]}
       activeOpacity={0.8}
+      onPress={handlePress}
       {...rest}
     >
       <TextStyle
