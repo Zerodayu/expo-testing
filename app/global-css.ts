@@ -14,7 +14,7 @@ export const COLORS = {
 
 export const style = StyleSheet.create({
   // Main
-  container: {
+  view: {
     flex: 1,
     backgroundColor: COLORS.background,
   },
