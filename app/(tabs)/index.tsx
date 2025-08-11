@@ -17,7 +17,7 @@ export default function Index() {
         <Text style={sText.title}><Plus size={24} />{count}</Text>
       </Pressable>
 
-      <Text style={sText.code}>Tabs -index</Text>
+      <Text style={sText.code}>Tabs -index</Text> 
     </View>
   );
 }

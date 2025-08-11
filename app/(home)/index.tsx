@@ -1,6 +1,6 @@
 import { Link } from "expo-router";
 import { Text, View } from "react-native";
-import { sButton, sText } from "../../ui/styleSheet";
+import { sButton } from "../../ui/styleSheet";
 
 export default function Index() {
   return (
@@ -12,7 +12,7 @@ export default function Index() {
       <Link style={sButton.destructive} href="../home">Go to Home</Link>
       <Link style={sButton.disabled} href="../home">Go to Home</Link>
 
-      <Text style={sText.code}>Hello World</Text>
+      <Text className="text-red-400">Hello World</Text>
     </View>
   );
 }
