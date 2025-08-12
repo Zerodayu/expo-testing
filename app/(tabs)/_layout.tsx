@@ -1,11 +1,10 @@
-import { COLORS } from "@/ui/global-css";
 import { Tabs } from "expo-router";
 import { CircleUser, CircleUserRound, House, HousePlus } from "lucide-react-native";
 
 export default function TabLayout() {
   return (
     <Tabs screenOptions={{
-      tabBarActiveTintColor: COLORS.primary
+      tabBarActiveTintColor: "#8B5CF6"
     }}>
       <Tabs.Screen
         name="index"

@@ -1,5 +1,7 @@
+import { Button } from "@/components/ui/button";
+import { Text } from '@/components/ui/text';
 import { sText } from "@/ui/styleSheet";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 
 export default function Profile() {
   return (
@@ -8,7 +10,11 @@ export default function Profile() {
       <Text style={sText.body}>Tabs - Profile</Text>
       <Text style={sText.muted}>Tabs - Profile</Text>
       <Text style={sText.link}>Tabs - Profile</Text>
-      <Text style={sText.code}>Tabs - Profile</Text>
+      <Text className="text-primary font-bold font-mono tracking-widest">Custom</Text>
+
+       <Button variant="outline">
+        <Text>Default</Text>
+      </Button>
     </View>
   );
 }
